@@ -1,0 +1,15 @@
+.faller {
+  position: fixed;
+  height: 5%;
+  aspect-ratio: 1 / 1;
+  top: 0;
+  background-color: black;
+  border: 1px solid black;
+
+  animation: falling-faller 10s ease-in-out infinite;
+}
+
+@keyframes falling-faller {
+  0% {top: -5%}
+  100% {top:100%}
+}
