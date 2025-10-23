@@ -1,0 +1,16 @@
+.faller {
+  position: fixed;
+  height: 20px;
+  width: 20px;
+  top: 0;
+  left: 25%;
+  background-color: black;
+  border: 1px solid black;
+
+  animation: falling-faller 10s ease-in-out infinite;
+}
+
+@keyframes falling-faller {
+  0% {top: 0%}
+  100% {top:100%}
+}
