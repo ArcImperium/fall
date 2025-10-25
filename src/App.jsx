@@ -30,6 +30,8 @@ function App() {
   const [showShooter, setShowShooter] = useState(false)
 
   useEffect(() => {
+    if (!showFaller) {return}
+
     const interval = setInterval(() => {
       setFallerX1(Math.random() * 85)
       setShowFaller1(true)
@@ -49,76 +51,10 @@ function App() {
       setShowFaller8(true)
       setFallerX9(Math.random() * 85)
       setShowFaller9(true)
-
-      setTimeout(() => {
-        setShowFaller1(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-        setShowFaller2(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-        setShowFaller3(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-        setShowFaller4(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-        setShowFaller5(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-        setShowFaller6(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-        setShowFaller7(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-        setShowFaller8(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-        setShowFaller9(prev => {
-          if (prev === true) {
-            setScore(prev => prev - 1)
-            return false
-          }
-          return prev
-        })
-      }, 10000)
     }, 10000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [showFaller])
 
   function shoot() {
     setShooting(true)
