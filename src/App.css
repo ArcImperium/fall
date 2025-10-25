@@ -17,3 +17,26 @@
   0% {top: -5%}
   100% {top:100%}
 }
+
+.game-button {
+  position: fixed;
+  height: 30px;
+  width: 5%;
+  right: 2.5%;
+}
+
+.game-button.a {
+  top: 10%;
+}
+
+.game-button.b {
+  top: 20%;
+}
+
+.game-button.c {
+  top: 30%;
+}
+
+.game-button.d {
+  top: 40%;
+}

@@ -23,10 +23,11 @@ function App() {
   const [showFaller9, setShowFaller9] = useState(true)
 
   const [score, setScore] = useState(0)
+  const [showFaller, setShowFaller] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX1(Math.random() * 95)
+      setFallerX1(Math.random() * 85)
       setShowFaller1(true)
     }, 10000)
 
@@ -35,7 +36,7 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX2(Math.random() * 95)
+      setFallerX2(Math.random() * 85)
       setShowFaller2(true)
     }, 10000)
 
@@ -44,7 +45,7 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX3(Math.random() * 95)
+      setFallerX3(Math.random() * 85)
       setShowFaller3(true)
     }, 10000)
 
@@ -53,7 +54,7 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX4(Math.random() * 95)
+      setFallerX4(Math.random() * 85)
       setShowFaller4(true)
     }, 10000)
 
@@ -62,7 +63,7 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX5(Math.random() * 95)
+      setFallerX5(Math.random() * 85)
       setShowFaller5(true)
     }, 10000)
 
@@ -71,7 +72,7 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX6(Math.random() * 95)
+      setFallerX6(Math.random() * 85)
       setShowFaller6(true)
     }, 10000)
 
@@ -80,7 +81,7 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX7(Math.random() * 95)
+      setFallerX7(Math.random() * 85)
       setShowFaller7(true)
     }, 10000)
 
@@ -89,7 +90,7 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX8(Math.random() * 95)
+      setFallerX8(Math.random() * 85)
       setShowFaller8(true)
     }, 10000)
 
@@ -98,7 +99,7 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFallerX9(Math.random() * 95)
+      setFallerX9(Math.random() * 85)
       setShowFaller9(true)
     }, 10000)
 
@@ -108,15 +109,23 @@ function App() {
   return (
     <>
     <h1 className="score">Score: {score}</h1>
-    {showFaller1 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller1(false), setScore(prev => prev + 1)}} style={{left: `${fallerX1}%`}}/>)}
-    {showFaller2 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller2(false), setScore(prev => prev + 1)}} style={{left: `${fallerX2}%`}}/>)}
-    {showFaller3 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller3(false), setScore(prev => prev + 1)}} style={{left: `${fallerX3}%`}}/>)}
-    {showFaller4 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller4(false), setScore(prev => prev + 1)}} style={{left: `${fallerX4}%`}}/>)}
-    {showFaller5 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller5(false), setScore(prev => prev + 1)}} style={{left: `${fallerX5}%`}}/>)}
-    {showFaller6 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller6(false), setScore(prev => prev + 1)}} style={{left: `${fallerX6}%`}}/>)}
-    {showFaller7 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller7(false), setScore(prev => prev + 1)}} style={{left: `${fallerX7}%`}}/>)}
-    {showFaller8 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller8(false), setScore(prev => prev + 1)}} style={{left: `${fallerX8}%`}}/>)}
-    {showFaller9 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller9(false), setScore(prev => prev + 1)}} style={{left: `${fallerX9}%`}}/>)}
+    <button className="game-button a" onClick={() => setShowFaller(prev => !prev)}>Faller</button>
+    <button className="game-button b"></button>
+    <button className="game-button c"></button>
+    <button className="game-button d"></button>
+    {showFaller && (
+      <>
+      {showFaller1 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller1(false), setScore(prev => prev + 1)}} style={{left: `${fallerX1}%`}}/>)}
+      {showFaller2 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller2(false), setScore(prev => prev + 1)}} style={{left: `${fallerX2}%`}}/>)}
+      {showFaller3 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller3(false), setScore(prev => prev + 1)}} style={{left: `${fallerX3}%`}}/>)}
+      {showFaller4 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller4(false), setScore(prev => prev + 1)}} style={{left: `${fallerX4}%`}}/>)}
+      {showFaller5 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller5(false), setScore(prev => prev + 1)}} style={{left: `${fallerX5}%`}}/>)}
+      {showFaller6 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller6(false), setScore(prev => prev + 1)}} style={{left: `${fallerX6}%`}}/>)}
+      {showFaller7 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller7(false), setScore(prev => prev + 1)}} style={{left: `${fallerX7}%`}}/>)}
+      {showFaller8 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller8(false), setScore(prev => prev + 1)}} style={{left: `${fallerX8}%`}}/>)}
+      {showFaller9 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller9(false), setScore(prev => prev + 1)}} style={{left: `${fallerX9}%`}}/>)}
+      </>
+    )}
     </>
   )
 }
