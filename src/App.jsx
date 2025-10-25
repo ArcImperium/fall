@@ -22,95 +22,124 @@ function App() {
   const [fallerX9, setFallerX9] = useState(90)
   const [showFaller9, setShowFaller9] = useState(true)
 
+  const [targetY, setTargetY] = useState(40)
+  const [shooting, setShooting] = useState(0)
+
   const [score, setScore] = useState(0)
   const [showFaller, setShowFaller] = useState(false)
+  const [showShooter, setShowShooter] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setFallerX1(Math.random() * 85)
       setShowFaller1(true)
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       setFallerX2(Math.random() * 85)
       setShowFaller2(true)
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       setFallerX3(Math.random() * 85)
       setShowFaller3(true)
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       setFallerX4(Math.random() * 85)
       setShowFaller4(true)
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       setFallerX5(Math.random() * 85)
       setShowFaller5(true)
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       setFallerX6(Math.random() * 85)
       setShowFaller6(true)
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       setFallerX7(Math.random() * 85)
       setShowFaller7(true)
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       setFallerX8(Math.random() * 85)
       setShowFaller8(true)
-    }, 10000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       setFallerX9(Math.random() * 85)
       setShowFaller9(true)
+
+      setTimeout(() => {
+        setShowFaller1(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+        setShowFaller2(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+        setShowFaller3(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+        setShowFaller4(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+        setShowFaller5(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+        setShowFaller6(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+        setShowFaller7(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+        setShowFaller8(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+        setShowFaller9(prev => {
+          if (prev === true) {
+            setScore(prev => prev - 1)
+            return false
+          }
+          return prev
+        })
+      }, 10000)
     }, 10000)
 
     return () => clearInterval(interval)
   }, [])
+
+  function shoot() {
+    setShooting(true)
+    setTimeout(() => {getTargetY(); setShooting(false)}, 4000)
+
+    return(
+      <>
+      </>
+    )
+  }
+
+  function getTargetY() {
+    const yVal = Math.random() * 80
+    setTargetY(yVal)
+  }
 
   return (
     <>
     <h1 className="score">Score: {score}</h1>
     <button className="game-button a" onClick={() => setShowFaller(prev => !prev)}>Faller</button>
-    <button className="game-button b"></button>
+    <button className="game-button b" onClick={() => setShowShooter(prev => !prev)}>Shooter</button>
     <button className="game-button c"></button>
     <button className="game-button d"></button>
     {showFaller && (
@@ -124,6 +153,21 @@ function App() {
       {showFaller7 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller7(false), setScore(prev => prev + 1)}} style={{left: `${fallerX7}%`}}/>)}
       {showFaller8 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller8(false), setScore(prev => prev + 1)}} style={{left: `${fallerX8}%`}}/>)}
       {showFaller9 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller9(false), setScore(prev => prev + 1)}} style={{left: `${fallerX9}%`}}/>)}
+      </>
+    )}
+    {showShooter && (
+      <>
+      {!shooting && (<img src={Leaf} className="shooter"/>)}
+      {shooting && (<img src={Leaf} className="shooter shooting"/>)}
+      {!shooting && (<button className="shooter-button" onClick={() => shoot()}>SHOOT!</button>)}
+      {shooting && (<button className="shooter-button inactive">SHOOT!</button>)}
+      <div className="target" style={{top: `${targetY + 10}%`}}>
+        <div className="target1">
+          <div className="target2">
+            <div className="target3"></div>
+          </div>
+        </div>
+      </div>
       </>
     )}
     </>

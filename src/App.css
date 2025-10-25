@@ -18,25 +18,121 @@
   100% {top:100%}
 }
 
+.shooter-button {
+  position: fixed;
+  height: 10%;
+  width: 20%;
+  bottom: 5%;
+  left: 40%;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+  background-color: goldenrod;
+  border-radius: 20px;
+  font-size: 25px;
+}
+
+.shooter-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 4px 1px darkgoldenrod;
+}
+
+.shooter-button.inactive {
+  background-color: lightgoldenrodyellow;
+}
+
+.shooter {
+  position: fixed;
+  left: 5%;
+  width: 5%;
+}
+
+.shooter.shooting {
+  animation: 4s shotPath ease-in-out;
+}
+
+@keyframes shotPath {
+  0% {left: 5%}
+  50% {left: 83.5%}
+  100% {left: 83.5%}
+}
+
+.target {
+  position: fixed;
+  right: 10%;
+  width: 1.5%;
+  height: 10%;
+  border: 2px solid black;
+}
+
+.target1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background-color: red;
+  z-index: 31;
+}
+
+.target2 {
+  position: relative;
+  top: 20%;
+  left: 0;
+  height: 60%;
+  width: 100%;
+
+  background-color: white;
+  z-index: 32;
+}
+
+.target3 {
+  position: relative;
+  top: 33.333%;
+  left: 0;
+  height: 33.333%;
+  width: 100%;
+
+  background-color: red;
+  z-index: 33;
+}
+
 .game-button {
   position: fixed;
-  height: 30px;
-  width: 5%;
-  right: 2.5%;
+  height: 10%;
+  width: 7.5%;
+  right: 1.25%;
+
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 20px;
+  text-align: center;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.game-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 4px 1px black;
 }
 
 .game-button.a {
-  top: 10%;
+  top: 15%;
+  background-color: indianred;
+  text-shadow: 1px 1px 2px whitesmoke;
 }
 
 .game-button.b {
-  top: 20%;
+  top: 35%;
+  background-color: sandybrown;
+  text-shadow: 1px 1px 2px whitesmoke;
 }
 
 .game-button.c {
-  top: 30%;
+  top: 55%;
+  background-color: burlywood;
 }
 
 .game-button.d {
-  top: 40%;
+  top: 75%;
+  background-color: wheat;
 }
