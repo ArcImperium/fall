@@ -74,11 +74,16 @@ function App() {
 
   return (
     <>
-    <h1 className="score">Score: {score}</h1>
-    <button className="game-button a" onClick={() => setShowFaller(prev => !prev)}>Faller</button>
-    <button className="game-button b" onClick={() => setShowShooter(prev => !prev)}>Shooter</button>
-    <button className="game-button c"></button>
-    <button className="game-button d"></button>
+    <div className="page"></div>
+    <div className="score-container">
+      <h1 className="score">Score: {score}</h1>
+    </div>
+    <div className="game-buttons-container">
+      <button className="game-button a" onClick={() => setShowFaller(prev => !prev)}>Faller</button>
+      <button className="game-button b" onClick={() => setShowShooter(prev => !prev)}>Shooter</button>
+      <button className="game-button c"></button>
+      <button className="game-button d"></button>
+    </div>
     {showFaller && (
       <>
       {showFaller1 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller1(false), setScore(prev => prev + 1)}} style={{left: `${fallerX1}%`}}/>)}
