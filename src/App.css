@@ -304,6 +304,56 @@
   z-index: 33;
 }
 
+.stats-container {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  height: 60%;
+  width: 85%;
+  top: 35%;
+  left: 2.5%;
+
+  background-color: lightyellow;
+  border-radius: 20px;
+}
+
+.v-stats-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% / 3);
+  height: 100%;
+  align-items: center;
+}
+
+.stat {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  width: calc((100% / 3) - 5%);
+
+  font-size: xx-large;
+  border: 1.5px solid black;
+  border-radius: 10px;
+
+  transition: transform 0.5s ease, background-color 1s ease, box-shadow 1s ease, text-shadow 0.5s ease;
+}
+
+.stat:hover {
+  transform: scale(1.1);
+  background-color: yellow;
+  box-shadow: 0 0 4px 1px black;
+  text-shadow: 0 0 5px yellowgreen;
+}
+
+.stat.a {
+  top: 20%;
+}
+.stat.b {
+  top: 60%;
+}
+
 .game-buttons-container {
   position: fixed;
   height: 80%;

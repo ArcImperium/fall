@@ -36,6 +36,13 @@ function App() {
   const [racerJakeX, setRacerJakeX] = useState(0)
   const [showChoice, setShowChoice] = useState(0)
 
+  const [fallerCount, setFallerCount] = useState(0)
+  const [fallerNum, setFallerNum] = useState(0)
+  const [shooterCount, setShooterCount] = useState(0)
+  const [shooterNum, setShooterNum] = useState(0)
+  const [racerCount, setRacerCount] = useState(0)
+  const [racerNum, setRacerNum] = useState(0)
+
   const [score, setScore] = useState(0)
   const [showFaller, setShowFaller] = useState(false)
   const [showShooter, setShowShooter] = useState(false)
@@ -64,6 +71,7 @@ function App() {
       setShowFaller8(true)
       setFallerX9(Math.random() * 85)
       setShowFaller9(true)
+      setFallerCount(prev => prev + 1)
     }, 10000)
 
     return () => clearInterval(interval)
@@ -75,7 +83,7 @@ function App() {
     const plusFactor = Math.ceil(Math.random() * 5)
     setTimeout(() => {if (plusFactor === 5) {setWinningSequence(true)}}, 2000)
 
-    setTimeout(() => {getTargetY(); setShooting(false); setScore(prev => prev + plusFactor), setWinningSequence(false)}, 4000)
+    setTimeout(() => {getTargetY(); setShooting(false); setScore(prev => prev + plusFactor); setShooterNum(prev => prev + plusFactor); setWinningSequence(false)}, 4000)
   }
 
   function getTargetY() {
@@ -85,6 +93,7 @@ function App() {
 
   function start(choice) {
     setStarted(true)
+    setRacerCount(prev => prev + 1)
 
     let greatest
     let winner
@@ -113,9 +122,11 @@ function App() {
   function raceCalc(winner, choice) {
     if (winner === choice) {
       setScore(prev => prev + 10)
+      setRacerNum(prev => prev + 10)
     }
     else {
       setScore(prev => prev - 10)
+      setRacerNum(prev => prev - 10)
     }
   }
 
@@ -133,15 +144,15 @@ function App() {
     </div>
     {showFaller && (
       <>
-      {showFaller1 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller1(false), setScore(prev => prev + 1)}} style={{left: `${fallerX1}%`}}/>)}
-      {showFaller2 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller2(false), setScore(prev => prev + 1)}} style={{left: `${fallerX2}%`}}/>)}
-      {showFaller3 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller3(false), setScore(prev => prev + 1)}} style={{left: `${fallerX3}%`}}/>)}
-      {showFaller4 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller4(false), setScore(prev => prev + 1)}} style={{left: `${fallerX4}%`}}/>)}
-      {showFaller5 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller5(false), setScore(prev => prev + 1)}} style={{left: `${fallerX5}%`}}/>)}
-      {showFaller6 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller6(false), setScore(prev => prev + 1)}} style={{left: `${fallerX6}%`}}/>)}
-      {showFaller7 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller7(false), setScore(prev => prev + 1)}} style={{left: `${fallerX7}%`}}/>)}
-      {showFaller8 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller8(false), setScore(prev => prev + 1)}} style={{left: `${fallerX8}%`}}/>)}
-      {showFaller9 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller9(false), setScore(prev => prev + 1)}} style={{left: `${fallerX9}%`}}/>)}
+      {showFaller1 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller1(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX1}%`}}/>)}
+      {showFaller2 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller2(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX2}%`}}/>)}
+      {showFaller3 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller3(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX3}%`}}/>)}
+      {showFaller4 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller4(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX4}%`}}/>)}
+      {showFaller5 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller5(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX5}%`}}/>)}
+      {showFaller6 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller6(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX6}%`}}/>)}
+      {showFaller7 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller7(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX7}%`}}/>)}
+      {showFaller8 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller8(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX8}%`}}/>)}
+      {showFaller9 && (<img src={Leaf} className="faller" onClick={() => {setShowFaller9(false), setScore(prev => prev + 1), setFallerNum(prev => prev + 1)}} style={{left: `${fallerX9}%`}}/>)}
       </>
     )}
     {showShooter && (
@@ -153,7 +164,7 @@ function App() {
         )}
         {!shooting && (<img src={Acorn} className="shooter"/>)}
         {shooting && (<img src={Acorn} className="shooter shooting" style={{'--target-y': `${targetY}%`}}/>)}
-        {!shooting && (<button className="shooter-button" onClick={() => shoot()}>SHOOT!</button>)}
+        {!shooting && (<button className="shooter-button" onClick={() => {shoot(); setShooterCount(prev => prev + 1)}}>SHOOT!</button>)}
         {shooting && (<button className="shooter-button inactive">SHOOT!</button>)}
         <div className="target" style={{top: `${targetY}%`}}>
           <div className="target1">
@@ -188,7 +199,18 @@ function App() {
     )}
     {showStats && (
       <div className="stats-container">
-
+        <div className="v-stats-container">
+          <div className="stat a">Faller Count: {fallerCount}</div>
+          <div className="stat b">Faller Score: {fallerNum}</div>
+        </div>
+        <div className="v-stats-container">
+          <div className="stat a">Shooter Count: {shooterCount}</div>
+          <div className="stat b">Shooter Score: {shooterNum}</div>
+        </div>
+        <div className="v-stats-container">
+          <div className="stat a">Racer Count: {racerCount}</div>
+          <div className="stat b">Racer Score: {racerNum}</div>
+        </div>
       </div>
     )}
     </>
