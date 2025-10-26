@@ -2,6 +2,9 @@ import {useState, useEffect} from 'react'
 import './App.css'
 import Leaf from './assets/leaf.png'
 import Acorn from './assets/acorn.png'
+import Turkey from './assets/turkey.png'
+import Reggie from './assets/reggie.webp'
+import Jake from './assets/jake.webp'
 
 function App() {
   const [fallerX1, setFallerX1] = useState(10)
@@ -28,6 +31,10 @@ function App() {
   const [winningSequence, setWinningSequence] = useState(false)
 
   const [started, setStarted] = useState(false)
+  const [racerTurkeyX, setRacerTurkeyX] = useState(0)
+  const [racerReggieX, setRacerReggieX] = useState(0)
+  const [racerJakeX, setRacerJakeX] = useState(0)
+  const [showChoice, setShowChoice] = useState(0)
 
   const [score, setScore] = useState(0)
   const [showFaller, setShowFaller] = useState(false)
@@ -75,9 +82,40 @@ function App() {
     setTargetY(yVal)
   }
 
-  function start() {
+  function start(choice) {
     setStarted(true)
-    setTimeout(() => {setStarted(false)}, 10000)
+
+    let greatest
+    let winner
+    const order1 = Math.random() * 100
+    const order2 = Math.random() * 100
+    const order3 = Math.random() * 100
+    if ((order1 >= order2) && (order1 >= order3)) {
+      greatest = order1
+      winner = "turkey"
+    }
+    else if ((order2 >= order1) && (order2 >= order3)) {
+      greatest = order2
+      winner = "reggie"
+    }
+    else if ((order3 >= order1) && (order3 >= order2)) {
+      greatest = order3
+      winner = "jake"
+    }
+    setRacerTurkeyX((order1 / greatest) * 100)
+    setRacerReggieX((order2 / greatest) * 100)
+    setRacerJakeX((order3 / greatest) * 100)
+
+    setTimeout(() => {setStarted(false), raceCalc(winner, choice)}, 10000)
+  }
+
+  function raceCalc(winner, choice) {
+    if (winner === choice) {
+      setScore(prev => prev + 10)
+    }
+    else {
+      setScore(prev => prev - 10)
+    }
   }
 
   return (
@@ -128,9 +166,21 @@ function App() {
     {showRacer && (
       <div className="racer-container">
         <div className="racer-button-column">
-          <button className={`racer-button a ${started ? "started" : ""}`} onClick={() => start()}>!</button>
-          <button className={`racer-button b ${started ? "started" : ""}`} onClick={() => start()}>!</button>
-          <button className={`racer-button c ${started ? "started" : ""}`} onClick={() => start()}>!</button>
+          <button className={`racer-button b ${started ? "started" : ""}`} onClick={() => {if (!started) {start("turkey")}}}>!</button>
+          <button className={`racer-button a ${started ? "started" : ""}`} onClick={() => {if (!started) {start("reggie")}}}>!</button>
+          <button className={`racer-button c ${started ? "started" : ""}`} onClick={() => {if (!started) {start("jake")}}}>!</button>
+        </div>
+        <div className="racer-container">
+          <img src={Turkey} className={`racer turkey ${started ? "started" : "not"}`} style={{'--racer-turkey-x': `${racerTurkeyX}%`}}/>
+          <img src={Reggie} className={`racer reggie ${started ? "started" : "not"}`} style={{'--racer-reggie-x': `${racerReggieX}%`}}/>
+          <img src={Jake} className={`racer jake ${started ? "started" : "not"}`} style={{'--racer-jake-x': `${racerJakeX}%`}}/>
+          <div className="finish-line">
+            <div className="line-white"></div>
+            <div className="line-black a"></div>
+            <div className="line-black b"></div>
+            <div className="line-black c"></div>
+            <div className="line-black d"></div>
+          </div>
         </div>
       </div>
     )}

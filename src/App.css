@@ -109,7 +109,7 @@
 
 .racer-button.a {
   position: relative;
-  top: 0;
+  top: 20%;
   background-color: royalblue;
 }
 .racer-button.a.started {
@@ -118,7 +118,7 @@
 
 .racer-button.b {
   position: relative;
-  top: 20%;
+  top: 0;
   background-color: orchid;
 }
 .racer-button.b.started {
@@ -132,6 +132,118 @@
 }
 .racer-button.c.started {
   background-color: lightcoral;
+}
+
+.racer-container {
+  position: fixed;
+  height: 60%;
+  width: 60%;
+  top: 35%;
+  left: 25%;
+}
+
+.racer {
+  position: absolute;
+  height: 20%;
+  width: auto;
+  background-color: transparent;
+  z-index: 5;
+}
+
+.racer.turkey {
+  top: 0;
+}
+.racer.turkey.not {
+  left: 5%;
+}
+.racer.turkey.started {
+  animation: turkey-run 10s ease-in-out, waddle 1s infinite;
+}
+@keyframes turkey-run {
+  0% {left: 5%}
+  80% {left: var(--racer-turkey-x)}
+  100% {left: var(--racer-turkey-x)}
+}
+
+.racer.reggie {
+  top: 40%;
+}
+.racer.reggie.not {
+  left: 5%;
+}
+.racer.reggie.started {
+  animation: reggie-run 10s ease-in-out, waddle 1s infinite;
+}
+@keyframes reggie-run {
+  0% {left: 5%}
+  80% {left: var(--racer-reggie-x)}
+  100% {left: var(--racer-reggie-x)}
+}
+
+.racer.jake {
+  top: 80%;
+}
+.racer.jake.not {
+  left: 5%;
+}
+.racer.jake.started {
+  animation: jake-run 10s ease-in-out, waddle 1s infinite;
+}
+@keyframes jake-run {
+  0% {left: 5%}
+  80% {left: var(--racer-jake-x)}
+  100% {left: var(--racer-jake-x)}
+}
+
+@keyframes waddle {
+  0% {transform: rotate(0deg)}
+  25% {transform: rotate(-5deg)}
+  50% {transform: rotate(0deg)}
+  75% {transform: rotate(5deg)}
+  100% {transform: rotate(0deg)}
+}
+
+.finish-line {
+  position: fixed;
+  height: 60%;
+  width: 5%;
+  top: 35%;
+  right: 10%;
+
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.line-white {
+  background-color: white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+}
+
+.line-black {
+  background-color: black;
+  position: absolute;
+  height: 12.5%;
+  width: 100%;
+  left: 0;
+}
+.line-black.a {
+  top: 12.5%;
+}
+.line-black.b {
+  top: 37.5%;
+}
+.line-black.c {
+  top: 62.5%;
+}
+.line-black.d {
+  top: 87.5%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .target {
