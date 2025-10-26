@@ -27,9 +27,12 @@ function App() {
   const [shooting, setShooting] = useState(0)
   const [winningSequence, setWinningSequence] = useState(false)
 
+  const [started, setStarted] = useState(false)
+
   const [score, setScore] = useState(0)
   const [showFaller, setShowFaller] = useState(false)
   const [showShooter, setShowShooter] = useState(false)
+  const [showRacer, setShowRacer] = useState(false)
 
   useEffect(() => {
     if (!showFaller) {return}
@@ -72,6 +75,11 @@ function App() {
     setTargetY(yVal)
   }
 
+  function start() {
+    setStarted(true)
+    setTimeout(() => {setStarted(false)}, 10000)
+  }
+
   return (
     <>
     <div className="page"></div>
@@ -81,7 +89,7 @@ function App() {
     <div className="game-buttons-container">
       <button className="game-button a" onClick={() => setShowFaller(prev => !prev)}>Faller</button>
       <button className="game-button b" onClick={() => setShowShooter(prev => !prev)}>Shooter</button>
-      <button className="game-button c"></button>
+      <button className="game-button c" onClick={() => setShowRacer(prev => !prev)}>Racer</button>
       <button className="game-button d"></button>
     </div>
     {showFaller && (
@@ -114,6 +122,15 @@ function App() {
               <div className="target3"></div>
             </div>
           </div>
+        </div>
+      </div>
+    )}
+    {showRacer && (
+      <div className="racer-container">
+        <div className="racer-button-column">
+          <button className={`racer-button a ${started ? "started" : ""}`} onClick={() => start()}>!</button>
+          <button className={`racer-button b ${started ? "started" : ""}`} onClick={() => start()}>!</button>
+          <button className={`racer-button c ${started ? "started" : ""}`} onClick={() => start()}>!</button>
         </div>
       </div>
     )}

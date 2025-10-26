@@ -84,6 +84,56 @@
   font-size: 40px;
 }
 
+.racer-button-column {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  top: 40%;
+  left: 20%;
+}
+
+.racer-button {
+  height: 20%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  font-size: 30px;
+  color: lightyellow;
+  border: 2px solid lightyellow;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.racer-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 6px 4px darkolivegreen;
+}
+
+.racer-button.a {
+  position: relative;
+  top: 0;
+  background-color: royalblue;
+}
+.racer-button.a.started {
+  background-color: cornflowerblue
+}
+
+.racer-button.b {
+  position: relative;
+  top: 20%;
+  background-color: orchid;
+}
+.racer-button.b.started {
+  background-color: violet;
+}
+
+.racer-button.c {
+  position: relative;
+  top: 40%;
+  background-color: coral;
+}
+.racer-button.c.started {
+  background-color: lightcoral;
+}
+
 .target {
   position: fixed;
   right: 10%;
@@ -171,9 +221,11 @@
 .game-button.c {
   top: 55%;
   background-color: burlywood;
+  text-shadow: 1px 1px 2px whitesmoke;
 }
 
 .game-button.d {
   top: 75%;
   background-color: wheat;
+  text-shadow: 1px 1px 2px whitesmoke;
 }
