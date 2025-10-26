@@ -39,6 +39,7 @@
   transition: transform 0.5s ease, box-shadow 0.5s ease;
 
   background-color: goldenrod;
+  border: 2px solid black;
   border-radius: 20px;
   font-size: 25px;
 }
@@ -82,6 +83,20 @@
 .winner-tag {
   color: red;
   font-size: 40px;
+}
+
+.choice {
+  position: fixed;
+  height: 5%;
+  aspect-ratio: 1/1;
+  left: 15%;
+
+  background-color: transparent;
+  border-radius: 50%;
+}
+.choice.started {
+  background-color: green;
+  box-shadow: 0 0 10px 2px green;
 }
 
 .racer-button-column {

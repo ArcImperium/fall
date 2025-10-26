@@ -40,6 +40,7 @@ function App() {
   const [showFaller, setShowFaller] = useState(false)
   const [showShooter, setShowShooter] = useState(false)
   const [showRacer, setShowRacer] = useState(false)
+  const [showStats, setShowStats] = useState(false)
 
   useEffect(() => {
     if (!showFaller) {return}
@@ -125,10 +126,10 @@ function App() {
       <h1 className="score">Score: {score}</h1>
     </div>
     <div className="game-buttons-container">
-      <button className="game-button a" onClick={() => setShowFaller(prev => !prev)}>Faller</button>
-      <button className="game-button b" onClick={() => setShowShooter(prev => !prev)}>Shooter</button>
-      <button className="game-button c" onClick={() => setShowRacer(prev => !prev)}>Racer</button>
-      <button className="game-button d"></button>
+      <button className="game-button a" onClick={() => {setShowFaller(prev => !prev); setShowShooter(false); setShowRacer(false); setShowStats(false)}}>Faller</button>
+      <button className="game-button b" onClick={() => {setShowShooter(prev => !prev); setShowFaller(false); setShowRacer(false); setShowStats(false)}}>Shooter</button>
+      <button className="game-button c" onClick={() => {setShowRacer(prev => !prev); setShowFaller(false); setShowShooter(false); setShowStats(false)}}>Racer</button>
+      <button className="game-button d" onClick={() => {setShowStats(prev => !prev); setShowFaller(false); setShowShooter(false); setShowRacer(false)}}>Stats</button>
     </div>
     {showFaller && (
       <>
@@ -166,9 +167,10 @@ function App() {
     {showRacer && (
       <div className="racer-container">
         <div className="racer-button-column">
-          <button className={`racer-button b ${started ? "started" : ""}`} onClick={() => {if (!started) {start("turkey")}}}>!</button>
-          <button className={`racer-button a ${started ? "started" : ""}`} onClick={() => {if (!started) {start("reggie")}}}>!</button>
-          <button className={`racer-button c ${started ? "started" : ""}`} onClick={() => {if (!started) {start("jake")}}}>!</button>
+          <div className={`choice ${started ? "started" : ""}`} style={{bottom: `${showChoice}%`}}></div>
+          <button className={`racer-button b ${started ? "started" : ""}`} onClick={() => {if (!started) {start("turkey"); setShowChoice(52.5)}}}>!</button>
+          <button className={`racer-button a ${started ? "started" : ""}`} onClick={() => {if (!started) {start("reggie"); setShowChoice(32.5)}}}>!</button>
+          <button className={`racer-button c ${started ? "started" : ""}`} onClick={() => {if (!started) {start("jake"); setShowChoice(12.5)}}}>!</button>
         </div>
         <div className="racer-container">
           <img src={Turkey} className={`racer turkey ${started ? "started" : "not"}`} style={{'--racer-turkey-x': `${racerTurkeyX}%`}}/>
@@ -182,6 +184,11 @@ function App() {
             <div className="line-black d"></div>
           </div>
         </div>
+      </div>
+    )}
+    {showStats && (
+      <div className="stats-container">
+
       </div>
     )}
     </>
