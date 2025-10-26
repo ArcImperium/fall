@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import './App.css'
 import Leaf from './assets/leaf.png'
+import Acorn from './assets/acorn.png'
 
 function App() {
   const [fallerX1, setFallerX1] = useState(10)
@@ -24,6 +25,7 @@ function App() {
 
   const [targetY, setTargetY] = useState(40)
   const [shooting, setShooting] = useState(0)
+  const [winningSequence, setWinningSequence] = useState(false)
 
   const [score, setScore] = useState(0)
   const [showFaller, setShowFaller] = useState(false)
@@ -58,16 +60,15 @@ function App() {
 
   function shoot() {
     setShooting(true)
-    setTimeout(() => {getTargetY(); setShooting(false)}, 4000)
 
-    return(
-      <>
-      </>
-    )
+    const plusFactor = Math.ceil(Math.random() * 5)
+    setTimeout(() => {if (plusFactor === 5) {setWinningSequence(true)}}, 2000)
+
+    setTimeout(() => {getTargetY(); setShooting(false); setScore(prev => prev + plusFactor), setWinningSequence(false)}, 4000)
   }
 
   function getTargetY() {
-    const yVal = Math.random() * 80
+    const yVal = Math.random() * 80 + 10
     setTargetY(yVal)
   }
 
@@ -92,19 +93,24 @@ function App() {
       </>
     )}
     {showShooter && (
-      <>
-      {!shooting && (<img src={Leaf} className="shooter"/>)}
-      {shooting && (<img src={Leaf} className="shooter shooting"/>)}
-      {!shooting && (<button className="shooter-button" onClick={() => shoot()}>SHOOT!</button>)}
-      {shooting && (<button className="shooter-button inactive">SHOOT!</button>)}
-      <div className="target" style={{top: `${targetY + 10}%`}}>
-        <div className="target1">
-          <div className="target2">
-            <div className="target3"></div>
+      <div className="shooter-container">
+        {winningSequence && (
+          <div className="winner-container">
+          <h1 className="winner-tag">BULLSEYE</h1>
+          </div>
+        )}
+        {!shooting && (<img src={Acorn} className="shooter"/>)}
+        {shooting && (<img src={Acorn} className="shooter shooting" style={{'--target-y': `${targetY}%`}}/>)}
+        {!shooting && (<button className="shooter-button" onClick={() => shoot()}>SHOOT!</button>)}
+        {shooting && (<button className="shooter-button inactive">SHOOT!</button>)}
+        <div className="target" style={{top: `${targetY}%`}}>
+          <div className="target1">
+            <div className="target2">
+              <div className="target3"></div>
+            </div>
           </div>
         </div>
       </div>
-      </>
     )}
     </>
   )
