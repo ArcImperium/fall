@@ -3,6 +3,21 @@
   text-align: center;
 }
 
+.canada-leaf {
+  position: absolute;
+  height: 80%;
+  aspect-ratio: 1/1;
+  top: 10%;
+  left: 5%;
+
+  animation: spin-leaf 6.7s /*six-seven*/ linear infinite
+}
+
+@keyframes spin-leaf {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg)}
+}
+
 .score-container {
   position: fixed;
   display: flex;

@@ -5,6 +5,8 @@ import Acorn from './assets/acorn.png'
 import Turkey from './assets/turkey.png'
 import Reggie from './assets/reggie.webp'
 import Jake from './assets/jake.webp'
+import CanadaLeaf from './assets/maple_leaf.png'
+import OhCanada from './assets/oh-canada.mp3'
 
 function App() {
   const [fallerX1, setFallerX1] = useState(10)
@@ -44,6 +46,7 @@ function App() {
   const [racerNum, setRacerNum] = useState(0)
 
   const [score, setScore] = useState(0)
+  const [playing, setPlaying] = useState(false)
   const [showFaller, setShowFaller] = useState(false)
   const [showShooter, setShowShooter] = useState(false)
   const [showRacer, setShowRacer] = useState(false)
@@ -84,6 +87,12 @@ function App() {
     setTimeout(() => {if (plusFactor === 5) {setWinningSequence(true)}}, 2000)
 
     setTimeout(() => {getTargetY(); setShooting(false); setScore(prev => prev + plusFactor); setShooterNum(prev => prev + plusFactor); setWinningSequence(false)}, 4000)
+  }
+
+  function playCanada() {
+    const audio = new Audio(OhCanada)
+    audio.play()
+    setTimeout(() => setPlaying(false), (1000 + (22 / 60) * 100))
   }
 
   function getTargetY() {
@@ -134,6 +143,7 @@ function App() {
     <>
     <div className="page"></div>
     <div className="score-container">
+      <img src={CanadaLeaf} className="canada-leaf" onClick={() => {if (!playing) {playCanada(); setPlaying(true)}}}/>
       <h1 className="score">Score: {score}</h1>
     </div>
     <div className="game-buttons-container">
