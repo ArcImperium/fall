@@ -92,7 +92,7 @@ function App() {
   function playCanada() {
     const audio = new Audio(OhCanada)
     audio.play()
-    setTimeout(() => setPlaying(false), (1000 + (22 / 60) * 100))
+    setTimeout(() => setPlaying(false), (72000))
   }
 
   function getTargetY() {
@@ -143,7 +143,7 @@ function App() {
     <>
     <div className="page"></div>
     <div className="score-container">
-      <img src={CanadaLeaf} className="canada-leaf" onClick={() => {if (!playing) {playCanada(); setPlaying(true)}}}/>
+      <img src={CanadaLeaf} className={`canada-leaf ${playing ? "playing" : ""}`} onClick={() => {if (!playing) {playCanada(); setPlaying(true)}}}/>
       <h1 className="score">Score: {score}</h1>
     </div>
     <div className="game-buttons-container">

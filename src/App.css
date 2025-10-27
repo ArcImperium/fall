@@ -10,12 +10,22 @@
   top: 10%;
   left: 5%;
 
-  animation: spin-leaf 6.7s /*six-seven*/ linear infinite
+  animation: spin-leaf 6.7s /*six-seven*/ linear infinite;
+}
+.canada-leaf.playing {
+  animation: enlarge-leaf 6.7s /*six-seven*/ linear infinite;
 }
 
 @keyframes spin-leaf {
   0% {transform: rotate(0deg)}
   100% {transform: rotate(360deg)}
+}
+@keyframes enlarge-leaf {
+  0% {transform: scale(1) rotate(0deg)}
+  25% {transform: scale(1.1) rotate(90deg)}
+  50% {transform: scale(1) rotate(180deg)}
+  75% {transform: scale(0.9) rotate(270deg)}
+  100% {transform: scale(1) rotate(360deg)}
 }
 
 .score-container {
