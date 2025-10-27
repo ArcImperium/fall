@@ -1,3 +1,10 @@
+I made a fall-themed website with fall-themed minigames.
+First, there's a game where the player can click leaves to "catch" them, and increase their score by 1 for each.
+Second, there's a game where the player can click the "SHOOT!" button to launch an acorn at the target, where it might hit the bullseye (increases score by 1-5 depending).
+Third, there's a game where the player can bet on which turkey will win the race, and if right, their score will increase by 10, if not, decrease by 10.
+There's also a tab to see stats, such as number of attempts and number of points earned for each minigame.
+Lastly, if the player clicks the spinning maple leaf next to their score, it will trigger a Canada jumpscare, flag and anthem included.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
