@@ -7,6 +7,7 @@ import Reggie from './assets/reggie.webp'
 import Jake from './assets/jake.webp'
 import CanadaLeaf from './assets/maple_leaf.png'
 import OhCanada from './assets/oh-canada.mp3'
+import Canada from './assets/Canada.webp'
 
 function App() {
   const [fallerX1, setFallerX1] = useState(10)
@@ -47,6 +48,7 @@ function App() {
 
   const [score, setScore] = useState(0)
   const [playing, setPlaying] = useState(false)
+  const [showCanadaPopup, setShowCanadaPopup] = useState(false)
   const [showFaller, setShowFaller] = useState(false)
   const [showShooter, setShowShooter] = useState(false)
   const [showRacer, setShowRacer] = useState(false)
@@ -92,7 +94,7 @@ function App() {
   function playCanada() {
     const audio = new Audio(OhCanada)
     audio.play()
-    setTimeout(() => setPlaying(false), (72000))
+    setTimeout(() => {setPlaying(false); setShowCanadaPopup(false)}, (72000))
   }
 
   function getTargetY() {
@@ -143,9 +145,12 @@ function App() {
     <>
     <div className="page"></div>
     <div className="score-container">
-      <img src={CanadaLeaf} className={`canada-leaf ${playing ? "playing" : ""}`} onClick={() => {if (!playing) {playCanada(); setPlaying(true)}}}/>
+      <img src={CanadaLeaf} className={`canada-leaf ${playing ? "playing" : ""}`} onClick={() => {if (!playing) {playCanada(); setPlaying(true); setShowCanadaPopup(true)}}}/>
       <h1 className="score">Score: {score}</h1>
     </div>
+    {showCanadaPopup &&(<div className="canada-container">
+      <img src={Canada} className="canada-popup" onClick={() => setShowCanadaPopup(false)}/>
+    </div>)}
     <div className="game-buttons-container">
       <button className="game-button a" onClick={() => {setShowFaller(prev => !prev); setShowShooter(false); setShowRacer(false); setShowStats(false)}}>Faller</button>
       <button className="game-button b" onClick={() => {setShowShooter(prev => !prev); setShowFaller(false); setShowRacer(false); setShowStats(false)}}>Shooter</button>

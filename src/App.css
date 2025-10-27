@@ -16,6 +16,25 @@
   animation: enlarge-leaf 6.7s /*six-seven*/ linear infinite;
 }
 
+.canada-container {
+  position: fixed;
+  display: flex;
+  height: 80%;
+  width: 100%;
+  top: 10%;
+  left: 0;
+  justify-content: center;
+}
+
+.canada-popup {
+  position: absolute;
+  height: 100%;
+  width: auto;
+  top: 0;
+  
+  z-index: 10000;
+}
+
 @keyframes spin-leaf {
   0% {transform: rotate(0deg)}
   100% {transform: rotate(360deg)}
